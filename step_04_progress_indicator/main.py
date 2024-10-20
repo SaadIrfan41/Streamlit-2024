@@ -1,9 +1,11 @@
 import streamlit as st
-# import time
+import time
 
 # Title
 st.title("Streamlit Status and Progress Indicator Examples")
-
+# text = st.text("Hello world")
+# time.sleep(3)
+# text.text("Hello")
 # Empty
 # st.subheader("Empty Element")
 # empty_elem = st.empty()
@@ -14,7 +16,8 @@ st.title("Streamlit Status and Progress Indicator Examples")
 # Progress
 # st.subheader("Progress Bar")
 # progress_bar = st.progress(0)
-# status_text = st.empty()
+# # status_text = st.empty()
+# status_text = st.text("Progress: Starting!")
 # for i in range(101):
 #     time.sleep(0.05)
 #     progress_bar.progress(i)
@@ -28,7 +31,7 @@ st.title("Streamlit Status and Progress Indicator Examples")
 # st.write("Process completed!")
 
 # # Status
-# st.subheader("Status")
+st.subheader("Status")
 # st.status("This is a status message")
 # with st.status("Downloading data..."):
 #     st.write("Searching for data...")
@@ -54,10 +57,3 @@ st.title("Streamlit Status and Progress Indicator Examples")
 # # Balloons
 # st.subheader("Balloons")
 # st.balloons()
-
-# # Success, error, warning, info
-# st.subheader("Different Alert Types")
-# st.success("Success alert message")
-# st.error("Error alert message")
-# st.warning("Warning alert message")
-# st.info("Info alert message")

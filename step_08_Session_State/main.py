@@ -7,6 +7,12 @@ st.write(f"Session State Object: {st.session_state}")
 if "a_counter" not in st.session_state:
     st.session_state["a_counter"] = 0
 
+if "radio_option" not in st.session_state:
+    st.session_state["radio_option"] = "Nothing Selected"
+
+if "option_text" not in st.session_state:
+    st.session_state["option_text"] = "Please select an option."
+
 if "boolean" not in st.session_state:
     st.session_state.boolean = False
 st.write(st.session_state)
@@ -35,20 +41,25 @@ st.write(f"after pressing button {st.session_state}")
 def change_radio_option():
     if st.session_state["radio_option"] == "a":
         st.session_state.radio_option = "b"
+        st.session_state["option_text"] = "You picked 'b' :heart:"
     elif st.session_state["radio_option"] == "b":
         st.session_state.radio_option = "c"
+        st.session_state["option_text"] = "You picked 'c' :rocket:"
     else:
         st.session_state.radio_option = "a"
+        st.session_state["option_text"] = "You picked 'a' :smile:"
 
 
 def display_option():
     option = st.session_state.radio_option
     if option == "a":
-        st.write("You picked 'a' :smile:")
+        st.session_state["option_text"] = "You picked 'a' :smile:"
     elif option == "b":
-        st.write("You picked 'b' :heart:")
+        st.session_state["option_text"] = "You picked 'b' :heart:"
+    elif option == "c":
+        st.session_state["option_text"] = "You picked 'c' :rocket:"
     else:
-        st.write("You picked 'c' :rocket:")
+        st.session_state["option_text"] = "Please select an option."
 
 
 ## works with all widgets!
@@ -59,10 +70,18 @@ st.write(st.session_state)
 #  Using callbacks to set session state on_click and on_change
 col1, col2 = st.columns(2)
 
-option_names = ["a", "b", "c"]
+option_names = ["Nothing Selected", "a", "b", "c"]
 
 # Display the radio buttons and bind to session state
-st.radio("Pick an option", option_names, key="radio_option", on_change=display_option)
+
+st.radio(
+    "Pick an option",
+    option_names,
+    key="radio_option",
+    on_change=display_option,
+)
+st.write(st.session_state["option_text"])
+
 
 st.button("Next option", on_click=change_radio_option)
 
